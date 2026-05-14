@@ -1,0 +1,43 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'core/style.css' %}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap" rel="stylesheet">
+
+
+<div class="navbar">
+    <h2>EliteDrive</h2>
+    <div class="navbar">
+    <div class="nav-links">
+        <a href="/">Auta</a>
+    </div>
+
+    <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit" class="logout-btn">Odhlásit</button>
+    </form>
+    </div>
+</div>
+<h1 class="page-title">Správa rezervací</h1>
+
+<div class="grid">
+    {% for v in vypujcky %}
+        <div class="card">
+
+            <div class="card-title">{{ v.auto }}</div>
+
+            <div class="card-text">Zákazník: {{ v.zakaznik }}</div>
+            <div class="card-text">Od: {{ v.datum_od }}</div>
+            <div class="card-text">Do: {{ v.datum_do }}</div>
+
+            <div class="status {{ v.stav }}">
+                Stav: {{ v.stav }}
+            </div>
+
+            {% if v.stav == "cekajici" %}
+                <a href="/schvalit/{{ v.id }}/" class="btn">Schválit</a>
+            {% endif %}
+
+        </div>
+    {% endfor %}
+</div>
