@@ -1,0 +1,48 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'core/style.css' %}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap" rel="stylesheet">
+
+<div class="navbar">
+    <h2>EliteDrive</h2>
+        <div class="navbar">
+            <div class="nav-links">
+                <a href="/">Vozový park</a>
+                <a href="/rezervace/">Rezervace</a>
+                <a href="/sprava/">Správa</a>
+            </div>
+
+            <form method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit" class="logout-btn">Odhlásit</button>
+            </form>
+        </div>
+
+    
+</div>
+
+<div class="grid">
+    
+    {% for auto in auta %}
+        <div class="card">
+
+            {% if auto.obrazek %}
+                <img src="{{ auto.obrazek.url }}" class="car-img">
+            {% else %}
+                <img src="{% static 'core/images/default.jpg' %}" class="car-img">
+            {% endif %}
+
+            <div class="card-title">{{ auto.model }}</div>
+            <div class="card-price">{{ auto.denni_sazba }} Kč / den</div>
+
+            <a href="{% url 'rezervace' %}?auto_id={{ auto.id }}" class="btn">
+                Rezervovat
+            </a>
+        </div>
+    {% endfor %}
+</div>
+
+<div class="footer">
+    © 2026 EliteDrive
+</div>
