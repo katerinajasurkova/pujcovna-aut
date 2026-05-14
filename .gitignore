@@ -1,0 +1,28 @@
+# Byte-compiled files
+__pycache__/
+*.py[cod]
+
+# Virtual environment
+venv/
+env/
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
+
+# Logs
+*.log
+
+# Python cache
+*.pyo
+
+# Static files cache
+staticfiles/
+
+# Environment variables
+.env
+
+# SQLite databáze
+# db.sqlite3
